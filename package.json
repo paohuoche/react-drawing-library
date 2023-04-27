@@ -2,8 +2,8 @@
   "name": "react-drawing-library",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
@@ -24,6 +24,7 @@
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-terser": "^0.4.1",
     "@rollup/plugin-typescript": "^11.1.0",
+    "@types/node": "^16.18.23",
     "@types/react": "^18.0.37",
     "@types/uuid": "^9.0.1",
     "babel-jest": "^29.5.0",
@@ -37,6 +38,7 @@
     "typescript": "^5.0.4"
   },
   "dependencies": {
+    "react-konva-utils": "^1.0.4",
     "use-image": "^1.1.0",
     "uuid": "^9.0.0"
   },

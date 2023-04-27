@@ -1,27 +1,27 @@
-import { Base, ESupportShape } from "./types"
-import useDrawing from "./useDrawing"
+import { PointValue } from "./shapes/point/Point.types"
+import { RectangleValue } from "./shapes/rectangle/Rectangle.types"
+import { Basic, ESupportShape } from "./types"
+import useShapes from "./useShapes"
 
 export type DrawingProps = {
-  imageUrl: string
+  imageUrl?: string
   width: number
   height: number
-  drawing: ReturnType<typeof useDrawing>
+  shapes: ReturnType<typeof useShapes>
+  bounding?: Basic.Boundary
+  draw?: {
+    type: keyof typeof ESupportShape
+    color: string
+    text?: string
+  }
   //   draw: null
-  //   beforeCreate: () => void
-  //   onCreate: () => void
+  beforeCreate?: () => Promise<boolean>
+  onCreate?: (value: RectangleValue | PointValue) => void
   //   afterCreate: () => void
   //   beforeUpdate: () => void
-  //   onUpdate: () => void
+  onUpdate?: (value: RectangleValue | PointValue) => void
   //   beforeDelete: () => void
-  //   onDelete: () => void
+  onDelete?: (value: RectangleValue | PointValue) => void
   //   onBlankClick: () => void
   //   onBlankRightClick: () => void
-}
-
-export type Shape = {
-  type: keyof typeof ESupportShape
-  id: string
-  coords: Base.Coord[]
-  color: string
-  text?: string
 }

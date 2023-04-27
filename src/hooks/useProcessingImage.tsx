@@ -24,33 +24,33 @@ const useProcessingImage = (params: {
   const { width, height } = params
 
   const info = useMemo(() => {
-    let actual = {
+    let boundary = {
       width: 0,
       height: 0,
       x: 0,
       y: 0,
       scale: 1,
-      image,
     }
+    let element
 
-    if (!image) return actual
-
+    if (!image) return { boundary, element }
+    element = image
     const stageRatio = width / height
     const imageAspectRatio = image.width / image.height // 宽高比
 
     if (imageAspectRatio > stageRatio) {
-      actual.width = width * 0.95
-      actual.height = actual.width / imageAspectRatio
+      boundary.width = width * 0.95
+      boundary.height = boundary.width / imageAspectRatio
     } else {
-      actual.height = height * 0.95
-      actual.width = actual.height * imageAspectRatio
+      boundary.height = height * 0.95
+      boundary.width = boundary.height * imageAspectRatio
     }
 
-    actual.x = (width - actual.width) / 2
-    actual.y = (height - actual.height) / 2
-    actual.scale = actual.width / image.width
+    boundary.x = (width - boundary.width) / 2
+    boundary.y = (height - boundary.height) / 2
+    boundary.scale = boundary.width / image.width
 
-    return actual
+    return { boundary, element }
   }, [params.url, image])
 
   return info

@@ -8,7 +8,7 @@ export enum ESupportShape {
   // Arrow, // 箭头线
 }
 
-export namespace Base {
+export namespace Basic {
   export type Coord = {
     x: number
     y: number
@@ -22,8 +22,10 @@ export namespace Base {
     coords: Coord[]
     color: string
     id: string
+    visible: boolean
     text?: string
     meta?: { [key: string]: any }
+    focus?: (id: string) => void
   }
 
   /**
@@ -33,5 +35,13 @@ export namespace Base {
     type: keyof typeof ESupportShape
     color: string
     text?: string
+  }
+
+  export type Boundary = {
+    width: number
+    height: number
+    x: number
+    y: number
+    scale: number
   }
 }

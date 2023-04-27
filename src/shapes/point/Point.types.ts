@@ -1,11 +1,11 @@
 import { Basic } from "../../types"
 
-export interface RectangleValue extends Basic.Shape {
-  type: "Rectangle"
+export interface PointValue extends Basic.Shape {
+  type: "Point"
 }
 
-export type RectangleProps = {
-  value: RectangleValue
+export type PointProps = {
+  value: PointValue
   selected?: boolean
   draggable: boolean
   visible: boolean
@@ -15,8 +15,5 @@ export type RectangleProps = {
     position: Basic.Coord,
     size: { width: number; height: number }
   ) => void
-  onDragEnd?: (
-    position: Basic.Coord,
-    size: { width: number; height: number }
-  ) => void
+  onDragEnd?: (position: Basic.Coord) => void
 }
