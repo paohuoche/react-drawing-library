@@ -13,7 +13,7 @@ export type DrawingProps = {
     type: keyof typeof ESupportShape
     color: string
     text?: string
-  }
+  } | null
   //   draw: null
   beforeCreate?: () => Promise<boolean>
   onCreate?: (value: RectangleValue | PointValue) => void
