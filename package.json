@@ -1,6 +1,10 @@
 {
-  "name": "react-drawing-library",
-  "version": "1.0.0",
+  "name": "@paohuoche/react-drawing-library",
+  "version": "1.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/paohuoche/react-drawing-library.git"
+  },
   "description": "",
   "main": "dist/index.js",
   "module": "dist/index.es.js",

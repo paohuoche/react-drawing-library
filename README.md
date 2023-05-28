@@ -7,6 +7,7 @@ This library is developed based on Konva and makes it easy to the management of 
 - [Example](#example)
 
 ## Installation
+npm i @paohuoche/react-drawing-library
 
 ## Props
 | name | type | default | description |
@@ -23,7 +24,7 @@ This library is developed based on Konva and makes it easy to the management of 
 ## Example
 ```js
 import { useEffect, useState } from "react"
-import Drawing, { DrawingProps, useDrawing } from "react-drawing-library"
+import Drawing, { DrawingProps, useDrawing } from "@paohuoche/react-drawing-library"
 
 const shapeDraw: DrawingProps["draw"] = {
   type: "Rectangle",
