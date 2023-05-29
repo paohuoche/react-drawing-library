@@ -1,5 +1,5 @@
 import { Stage } from "konva/lib/Stage"
-import { Base } from "../types"
+import { Basic } from "../types"
 
 export default function boundCheck(
   stage: Stage,
@@ -11,8 +11,8 @@ export default function boundCheck(
   }
 ): {
   outside: boolean
-  coord: Base.Coord // coord 是 transform.invert 后的坐标
-  boundedCoord: Base.Coord // Coordinates within the boundary of the image
+  coord: Basic.Coord // coord 是 transform.invert 后的坐标
+  boundedCoord: Basic.Coord // Coordinates within the boundary of the image
 } {
   const point = stage.getPointerPosition()!
 
@@ -31,6 +31,11 @@ export default function boundCheck(
     boundedCoord.x = imageLeftX
   } else if (boundedCoord.x > imageRightX) {
     boundedCoord.x = imageRightX
+  }
+  if (boundedCoord.y < imageTopY) {
+    boundedCoord.y = imageTopY
+  } else if (boundedCoord.y > imageBottomY) {
+    boundedCoord.y = imageBottomY
   }
 
   const { x, y, width, height } = imageInfo

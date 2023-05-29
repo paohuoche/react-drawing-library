@@ -1,22 +1,21 @@
 import React from "react"
-import { Base } from "../../types"
+import { Basic } from "../../types"
 import { Stage } from "konva/lib/Stage"
 import Konva from "konva"
 import { Layer } from "konva/lib/Layer"
 import { Rect } from "konva/lib/shapes/Rect"
 import { KonvaNodeEvents } from "react-konva"
-import { EventsListener } from "../../hooks/useListeningCreateShape"
+import { EventsListener } from "../../stage/generateListener"
 
-export const handleCreate = (stage: Stage, draw: Base.Draw) => {
-  const { r, g, b } = Konva.Util.getRGB(draw.color)
+const DrawingColor = "#52acff"
+
+export const handleCreate = (stage: Stage) => {
+  const { r, g, b } = Konva.Util.getRGB(DrawingColor)
 
   let layer: Layer // drawing layer
   let newRect: Rect
-
   let isDrawing = false
-
   let begin_point = { x: 0, y: 0 }
-  // let end_point = { x: 0, y: 0 }
 
   /**
    * listening mouseDown
@@ -24,7 +23,7 @@ export const handleCreate = (stage: Stage, draw: Base.Draw) => {
    * @param e
    * @returns
    */
-  const onMouseDown: (coord: Base.Coord) => KonvaNodeEvents["onMouseDown"] =
+  const onMouseDown: (coord: Basic.Coord) => KonvaNodeEvents["onMouseDown"] =
     (coord) => () => {
       layer = new Konva.Layer({
         id: "drawingLayer",
@@ -34,10 +33,9 @@ export const handleCreate = (stage: Stage, draw: Base.Draw) => {
 
       newRect = new Konva.Rect({
         strokeScaleEnabled: false,
-        // hitStrokeWidth: false,
         fill: `rgba(${r}, ${g}, ${b}, .3)`,
         strokeWidth: 2,
-        stroke: draw.color,
+        stroke: DrawingColor,
       })
       layer.add(newRect)
       stage.add(layer)
@@ -53,7 +51,7 @@ export const handleCreate = (stage: Stage, draw: Base.Draw) => {
    * @param coord the coordinate of cursor in realtime
    * @returns
    */
-  const onMouseMove: (coord: Base.Coord) => KonvaNodeEvents["onMouseMove"] =
+  const onMouseMove: (coord: Basic.Coord) => KonvaNodeEvents["onMouseMove"] =
     (coord) => (e) => {
       if (!isDrawing) return
 
@@ -67,22 +65,18 @@ export const handleCreate = (stage: Stage, draw: Base.Draw) => {
    * @param coord the coordinate of cursor in realtime
    * @returns
    */
-  const onMouseUp: EventsListener["onMouseUp"] = (coord, cb) => (e) => {
-    // if end_point.x === 0 , it indicate that cursor do not move
-    if (coord.x === begin_point.x) {
+  const onMouseUp: EventsListener["onMouseUp"] = (coord) => (e) => {
+    if (coord.x === begin_point.x || !isDrawing) {
       isDrawing = false
       layer?.destroy()
       return
     }
 
-    cb?.([begin_point, coord].sort((a, b) => a.x - b.x))
-
+    // reset variable
     isDrawing = false
-
-    // 完成绘制一个矩形后，重制起止坐标
-    begin_point = { x: 0, y: 0 }
-    // end_point = { x: 0, y: 0 }
     layer?.destroy()
+
+    return [begin_point, coord].sort((a, b) => a.x - b.x)
   }
 
   return {
