@@ -22,6 +22,7 @@ npm i @paohuoche/react-drawing-library
 | onDelete | (value: RectangleValue \| PointValue) => void | | Executed when shape is deleted |
   
 ## Example
+[Demo](https://stackblitz.com/edit/stackblitz-starters-ww1g6s?file=src%2FApp.tsx)
 ```js
 import { useEffect, useState } from "react"
 import Drawing, { DrawingProps, useDrawing } from "@paohuoche/react-drawing-library"
