@@ -1,5 +1,5 @@
 # react-drawing-library
-This library is developed based on Konva and makes it easy to the management of shapes.
+This library is developed based on [Konva](https://konvajs.org/) and makes it easy to the management of shapes.
 
 ## Table of Contents
 - [Installation](#installation)
