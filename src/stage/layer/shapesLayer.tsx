@@ -6,11 +6,13 @@ import { Basic } from "../../types"
 import { toReal, toStage } from "../../utils/transformCoord"
 import { StageContext } from "../stage"
 import Point from "../../shapes/point/Point"
+import { DrawingProps } from "../../index.types"
 // import Rectangle from "../shapes/rectangle"
 
 const ShapesLayer = (props: {
   shapes: ReturnType<typeof useDrawing>["shapes"]
   imageBounding: Basic.Boundary
+  deleteCallback: DrawingProps["onDelete"]
 }) => {
   const context = useContext(StageContext)
 
@@ -26,6 +28,7 @@ const ShapesLayer = (props: {
    */
   const del = (id: string) => {
     context.shapes.del(id)
+    props.deleteCallback?.(id)
   }
 
   /**

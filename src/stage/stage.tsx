@@ -104,7 +104,11 @@ const Drawing = (
             <ImageLayer image={imageElement} imageBounding={boundary} />
           ) : null}
 
-          <ShapesLayer shapes={props.shapes.shapes} imageBounding={boundary} />
+          <ShapesLayer
+            shapes={props.shapes.shapes}
+            imageBounding={boundary}
+            deleteCallback={props.onDelete}
+          />
           {/* {props.shapes.selectedId ? (
           <Modification shape={selectedShape} imageBounding={imageBounding} />
         ) : null} */}

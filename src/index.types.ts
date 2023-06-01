@@ -21,7 +21,7 @@ export type DrawingProps = {
   //   beforeUpdate: () => void
   onUpdate?: (value: RectangleValue | PointValue) => void
   //   beforeDelete: () => void
-  onDelete?: (value: RectangleValue | PointValue) => void
+  onDelete?: (id: string) => void
   //   onBlankClick: () => void
   //   onBlankRightClick: () => void
 }
